@@ -2,8 +2,8 @@
 var generateBtn = document.querySelector("#generate");
 
 
-const lowercaseCharCodes = arrayFromLowtoHigh(65, 90);
-const uppercaseCharCodes = arrayFromLowtoHigh(97, 122);
+const lowercaseCharCodes = arrayFromLowtoHigh(97, 122);
+const uppercaseCharCodes = arrayFromLowtoHigh(65, 90);
 const numberCharCodes = arrayFromLowtoHigh(48, 57);
 const symbolCharCodes = arrayFromLowtoHigh(37,47).concat(
   arrayFromLowtoHigh(58, 64)
@@ -34,10 +34,10 @@ includeNumbers, includeSymbols) {
 
 
   var chars = [];
-  if (includeLowerCase) chars = chars.concat(includeLowerCase);
-  if (includeUpperCase) chars = chars.concat(includeUpperCase);
-  if (includeSymbols) chars = chars.concat(includeSymbols);
-  if (includeNumbers) chars = chars.concat(includeNumbers);
+  if (includeLowerCase) chars = chars.concat(lowercaseCharCodes);
+  if (includeUpperCase) chars = chars.concat(uppercaseCharCodes);
+  if (includeSymbols) chars = chars.concat(symbolCharCodes);
+  if (includeNumbers) chars = chars.concat(numberCharCodes);
 
 
   const passwordCharacters = [];
@@ -45,7 +45,7 @@ includeNumbers, includeSymbols) {
     const characterCode = chars[Math.floor(Math.random() * chars.length)];
     passwordCharacters.push(String.fromCharCode(characterCode));
   };
-  console.log(passwordCharacters);
+
   return passwordCharacters.join('');
 };
 
