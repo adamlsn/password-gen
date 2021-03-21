@@ -17,39 +17,21 @@ const symbolCharCodes = arrayFromLowtoHigh(37,47).concat(
 // generate password function
 function generatePassword(characterAmount, includeLowerCase, includeUpperCase,
 includeNumbers, includeSymbols) {
-  function characterAmount() {
-    window.prompt("How long would you like your password? Between 8 and 128 characters");
-    return characterAmount;
-  };
-  characterAmount();
-  
-  function includeLowerCase() {
-    window.confirm("Would you like to include lower case characters? YES or NO")
-    return includeLowerCase;
-  };
-  
-  includeLowerCase();
-  
-  function includeUpperCase() {
-    window.confirm("Would you like to include upper case characters? YES or NO")
-    return includeUpperCase;
-  };
-  
-  includeUpperCase();
-  
-  function includeSymbols() {
-    window.confirm("Would you like to include symbols? YES or NO")
-    return includeSymbols;
-  };
-  
-  includeSymbols();
-  
-  function includeNumbers() {
-    window.confirm("Would you like to include numbers? YES or NO")
-  };
-  
-  includeNumbers();
-  
+  var characterAmount = window.prompt("How long would you like your password? Between 8 and 128 characters");
+  if(characterAmount < 8 || characterAmount > 128 || isNaN(characterAmount)) {
+    window.alert ('WARNING: You must insert a number between "8" and "128"!');
+    return chars = 'Press "Generate Password" to try again.';
+  }
+
+  var includeLowerCase = window.confirm("Would you like to include lower case characters?");
+  var includeUpperCase = window.confirm("Would you like to include upper case characters?");
+  var includeSymbols = window.confirm("Would you like to include symbols?");
+  var includeNumbers = window.confirm("Would you like to include numbers?");
+  if(includeLowerCase === false && includeUpperCase === false && includeSymbols === false && includeNumbers === false) {
+    window.alert("WARNING: You must choose at least one of the previous options!")
+    return chars = 'Press "Generate Password" to try again.';
+  }
+
 
   var chars = [];
   if (includeLowerCase) chars = chars.concat(includeLowerCase);
@@ -60,10 +42,10 @@ includeNumbers, includeSymbols) {
 
   const passwordCharacters = [];
   for (var i = 0; i < characterAmount; i++) {
-    const characterCode = charCodes[Math.floor(Math.random() * chars.length)]
+    const characterCode = chars[Math.floor(Math.random() * chars.length)];
     passwordCharacters.push(String.fromCharCode(characterCode));
   };
-  console.log(chars);
+  console.log(passwordCharacters);
   return passwordCharacters.join('');
 };
 
