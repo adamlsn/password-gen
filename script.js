@@ -1,7 +1,7 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
-
+//const variables to set array length/values for ASCII integers
 const lowercaseCharCodes = arrayFromLowtoHigh(97, 122);
 const uppercaseCharCodes = arrayFromLowtoHigh(65, 90);
 const numberCharCodes = arrayFromLowtoHigh(48, 57);
@@ -15,8 +15,9 @@ const symbolCharCodes = arrayFromLowtoHigh(37,47).concat(
 
 
 // generate password function
-function generatePassword(characterAmount, includeLowerCase, includeUpperCase,
-includeNumbers, includeSymbols) {
+function generatePassword() {
+
+  //window prompts to get user input
   var characterAmount = window.prompt("How long would you like your password? Between 8 and 128 characters");
   if(characterAmount < 8 || characterAmount > 128 || isNaN(characterAmount)) {
     window.alert ('WARNING: You must insert a number between "8" and "128"!');
@@ -32,14 +33,14 @@ includeNumbers, includeSymbols) {
     return chars = 'Press "Generate Password" to try again.';
   }
 
-
+  //checking user input to concat on choices
   var chars = [];
   if (includeLowerCase) chars = chars.concat(lowercaseCharCodes);
   if (includeUpperCase) chars = chars.concat(uppercaseCharCodes);
   if (includeSymbols) chars = chars.concat(symbolCharCodes);
   if (includeNumbers) chars = chars.concat(numberCharCodes);
 
-
+  //generating password
   const passwordCharacters = [];
   for (var i = 0; i < characterAmount; i++) {
     const characterCode = chars[Math.floor(Math.random() * chars.length)];
@@ -49,7 +50,7 @@ includeNumbers, includeSymbols) {
   return passwordCharacters.join('');
 };
 
-//generate password functoin
+//function to set character integers for ASCII .fromCharCode
 function arrayFromLowtoHigh (low, high) {
   const array = [];
   for(var i = low; i <= high; i++) {
